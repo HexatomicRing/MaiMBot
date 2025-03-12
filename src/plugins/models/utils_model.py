@@ -235,13 +235,14 @@ class LLM_request:
                                                 delta_content = ""
                                             accumulated_content += delta_content
                                             # 检测流式输出文本是否结束
-                                            finish_reason =  chunk["choices"][0]["finish_reason"]
-                                            if finish_reason == "stop":
-                                                usage = chunk.get("usage", None)
-                                                if usage:
-                                                    break
-                                                # 部分平台在文本输出结束前不会返回token用量，此时需要再获取一次chunk
-                                                flag_delta_content_finished = True
+                                            if "finish_reason" in chunk["choices"][0]:
+                                                finish_reason = chunk["choices"][0]["finish_reason"]
+                                                if finish_reason == "stop":
+                                                    usage = chunk.get("usage", None)
+                                                    if usage:
+                                                        break
+                                                    # 部分平台在文本输出结束前不会返回token用量，此时需要再获取一次chunk
+                                                    flag_delta_content_finished = True
                                             
                                     except Exception:
                                         logger.exception("解析流式输出错误")

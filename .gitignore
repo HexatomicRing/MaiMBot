@@ -199,3 +199,5 @@ jieba.cache
 
 # direnv
 /.direnv
+config/*
+.idea
