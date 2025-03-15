@@ -156,7 +156,7 @@ class PromptBuilder:
             prompt_personality += f"你正在{chat_stream.platform}上和{sender_name}私聊"
         personality = choose_personality()
         prompt_personality += f'''{personality}, 你正在浏览qq群,{promt_info_prompt},
-                    现在请你给出日常且口语化的回复，平淡一些，尽量简短一些。{keywords_reaction_prompt}
+                    现在请你给出日常且口语化的回复，稍微简短一些。{keywords_reaction_prompt}
                     请注意把握群里的聊天内容，不要刻意突出自身学科背景，不要回复的太有条理，可以有个性。'''
 
         # 中文高手(新加的好玩功能)
@@ -169,7 +169,7 @@ class PromptBuilder:
             prompt_ger += '你喜欢用文言文'
 
         # 额外信息要求
-        extra_info = '''但是记得回复平淡一些，简短一些，尤其注意在没明确提到时不要过多提及自身的背景, 不要直接回复别人发的表情包，记住不要输出多余内容(包括前后缀，冒号和引号，括号，表情等)，只需要输出回复内容就好，不要输出其他任何内容'''
+        extra_info = '''但是记得回复稍微简短一些，尤其注意在没明确提到时不要过多提及自身的背景, 不要直接回复别人发的表情包，记住不要输出多余内容(包括前后缀，冒号和引号，括号，表情等)，只需要输出回复内容就好，不要输出其他任何内容'''
 
         # 合并prompt
         prompt = ""
