@@ -1,4 +1,4 @@
-from src.do_tool.tool_can_use.base_tool import BaseTool
+from src.do_tool.tool_can_use.base_tool import BaseTool, get_tool_instance
 from src.plugins.chat.utils import get_embedding
 from src.common.database import db
 from src.common.logger import get_module_logger
@@ -43,6 +43,12 @@ class SearchKnowledgeTool(BaseTool):
                     content = f"你知道这些知识: {knowledge_info}"
                 else:
                     content = f"你不太了解有关{query}的知识"
+                    try:
+                        logger.info("没有查询到相关知识，开始在线检索...")
+                        result = await get_tool_instance("search_knowledge_web").execute(function_args, message_txt)
+                        content = result.get("content", content)
+                    except:
+                        pass
                 return {"name": "search_knowledge", "content": content}
             return {"name": "search_knowledge", "content": f"无法获取关于'{query}'的嵌入向量"}
         except Exception as e:
