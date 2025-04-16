@@ -8,7 +8,7 @@ import asyncio
 from tavily import TavilyClient
 
 from src.plugins.config.config import global_config
-from src.plugins.models.utils_model import LLM_request
+from src.plugins.models.utils_model import LLMRequest
 
 logger = get_module_logger("web_search_tool")
 
@@ -35,13 +35,13 @@ class WebSearchTool(BaseTool):
         self.tavily_client = TavilyClient(self.tavily_api_key) if self.tavily_api_key else None
 
         # 初始化LLM模型
-        self.judge_model = LLM_request(
+        self.judge_model = LLMRequest(
             model=global_config.llm_heartflow,
             temperature=0.2,
             max_tokens=100,
             request_type="search_judge"
         )
-        self.summary_model = LLM_request(
+        self.summary_model = LLMRequest(
             model=global_config.llm_summary_by_topic,
             temperature=0.3,
             max_tokens=1500,
