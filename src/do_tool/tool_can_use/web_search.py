@@ -1,13 +1,12 @@
+from src.config.config import global_config
 from src.do_tool.tool_can_use.base_tool import BaseTool
 from src.common.logger import get_module_logger
 from typing import Dict, Any, Optional, Tuple
 import os
 import re
-import time
 import asyncio
 from tavily import TavilyClient
 
-from src.plugins.config.config import global_config
 from src.plugins.models.utils_model import LLMRequest
 
 logger = get_module_logger("web_search_tool")
