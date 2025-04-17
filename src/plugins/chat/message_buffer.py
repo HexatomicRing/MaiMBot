@@ -9,7 +9,7 @@ from typing import Dict
 from collections import OrderedDict
 import random
 import time
-from ..config.config import global_config
+from ...config.config import global_config
 
 logger = get_module_logger("message_buffer")
 
@@ -138,9 +138,11 @@ class MessageBuffer:
                             if msg.message.message_segment.type != "seglist":
                                 type = msg.message.message_segment.type
                             else:
-                                if (isinstance(msg.message.message_segment.data, list) 
-                                and all(isinstance(x, Seg) for x in msg.message.message_segment.data)
-                                and len(msg.message.message_segment.data) == 1):
+                                if (
+                                    isinstance(msg.message.message_segment.data, list)
+                                    and all(isinstance(x, Seg) for x in msg.message.message_segment.data)
+                                    and len(msg.message.message_segment.data) == 1
+                                ):
                                     type = msg.message.message_segment.data[0].type
                             combined_text.append(msg.message.processed_plain_text)
                             continue
@@ -152,9 +154,11 @@ class MessageBuffer:
                             if msg.message.message_segment.type != "seglist":
                                 F_type = msg.message.message_segment.type
                             else:
-                                if (isinstance(msg.message.message_segment.data, list) 
-                                and all(isinstance(x, Seg) for x in msg.message.message_segment.data)
-                                and len(msg.message.message_segment.data) == 1):
+                                if (
+                                    isinstance(msg.message.message_segment.data, list)
+                                    and all(isinstance(x, Seg) for x in msg.message.message_segment.data)
+                                    and len(msg.message.message_segment.data) == 1
+                                ):
                                     F_type = msg.message.message_segment.data[0].type
                             if hasattr(msg.message, "processed_plain_text") and msg.message.processed_plain_text:
                                 if F_type == "text":
